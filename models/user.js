@@ -5,6 +5,13 @@ const userSchema = mongoose.Schema({
         required: true,
         type:String,
         trim:true,
+        validate:{
+            validator: (value)=>{
+                const re =  /^[a-zA-Z\ ]+[a-zA-Z\ ]+[a-zA-Z]+$/;
+                return value.match(re);
+            },
+            message:'Please enter a valid name'
+        },
     },
     email:{
         required:true,
@@ -12,7 +19,7 @@ const userSchema = mongoose.Schema({
         trim:true,
         validate:{
             validator: (value)=>{
-                const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+                const re = /^[a-z0-9\.]+@([a-z0-9]+\.)+[a-z0-9]{2,4}$/;
                 return value.match(re);
             },
             message:'Please enter a valid email address'
