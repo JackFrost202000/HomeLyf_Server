@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
                 const re = /^[a-z0-9\.]+@([a-z0-9]+\.)+[a-z0-9]{2,4}$/;
                 return value.match(re);
             },
-            message:'Please enter a valid email address'
+            message:'Please enter a valid email address. Sorry, only contain letters(a-z), number(0-9), and periods(.) are allowed.'
         },
     },
     password:{
