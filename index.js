@@ -1,7 +1,6 @@
 //Imports from packages
 const express = require("express");
 const mongoose = require("mongoose")
-const cors = require("cors");
 
 //Import from other files
 const authRouter = require('./routes/auth');
@@ -12,7 +11,6 @@ const app = express();
 const DB = "mongodb+srv://amitpotdukhe20:cmPUrefrPzB0BIuW@homelyfcluster0.4fzxngg.mongodb.net/?retryWrites=true&w=majority";
 
 //middleware
-app.use(cors());
 app.use(express.json());
 app.use(authRouter);
 
