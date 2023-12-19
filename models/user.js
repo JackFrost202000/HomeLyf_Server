@@ -13,6 +13,13 @@ const userSchema = mongoose.Schema({
             },
             message:'Please enter a valid name'
         },
+        validate:{
+            validator: (value)=>{
+                const re =  /^[a-zA-Z\ ]+[a-zA-Z\ ]+[a-zA-Z]+$/;
+                return value.match(re);
+            },
+            message:'Please enter a valid name'
+        },
     },
     email:{
         required:true,
