@@ -8,17 +8,10 @@ const userSchema = mongoose.Schema({
         trim:true,
         validate:{
             validator: (value)=>{
-                const re =  /^[a-zA-Z\ ]+[a-zA-Z\ ]+[a-zA-Z]+$/;
+                const re =  /^[a-zA-Z\ ]{1,30}$/;
                 return value.match(re);
             },
-            message:'Please enter a valid name'
-        },
-        validate:{
-            validator: (value)=>{
-                const re =  /^[a-zA-Z\ ]+[a-zA-Z\ ]+[a-zA-Z]+$/;
-                return value.match(re);
-            },
-            message:'Please enter a valid name'
+            message:'Please enter a valid name with a maximum length of 30 characters'
         },
     },
     email:{
@@ -27,7 +20,7 @@ const userSchema = mongoose.Schema({
         trim:true,
         validate:{
             validator: (value)=>{
-                const re = /^[a-z0-9\.]+@([a-z0-9]+\.)+[a-z0-9]{2,}$/;
+                const re = /^[a-z0-9\.]+@([a-z0-9]+\.)+[a-z0-9]{2,320}$/;
                 return value.match(re);
             },
             message:'Please enter a valid email address, only contain letters(a-z), number(0-9), and periods(.) are allowed.'
@@ -63,14 +56,20 @@ const userSchema = mongoose.Schema({
                         condition: value.length >= 8,
                         message: 'make it at least 8 characters long'
                     },
+                    {
+                        condition: value.length <= 14,
+                        message: 'keep it less than 14 characters'
+                    },
                     // Add additional conditions if needed...
                 ];
 
                 const failedConditions = validationConditions.filter((condition) => !condition.condition);
 
                 if (failedConditions.length > 0) {
-                    const errorMessages = failedConditions.map((condition) => `Please ${condition.message}`).join(' and ');
-                    throw new Error(errorMessages);
+                    const firstErrorMessage = `Please ${failedConditions[0].message}`;
+                const restErrorMessages = failedConditions.slice(1).map((condition) => condition.message);
+                const errorMessages = [firstErrorMessage, ...restErrorMessages].join(' and ');
+                throw new Error(errorMessages);
                 }
 
                 return true;
