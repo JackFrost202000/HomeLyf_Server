@@ -14,7 +14,7 @@ const productRouter = require("./routes/product");
 //INIT
 const PORT = process.env.PORT || 3000;
 const app = express();
-const DB = "mongodb+srv://jackfrost2001:EhOLjUkP877mRXHs@cluster0.wnjkzcd.mongodb.net/?retryWrites=true&w=majority";//"mongodb+srv://amitpotdukhe20:cmPUrefrPzB0BIuW@homelyfcluster0.4fzxngg.mongodb.net/?retryWrites=true&w=majority";
+const DB = "mongodb+srv://amitpotdukhe20:cmPUrefrPzB0BIuW@homelyfcluster0.4fzxngg.mongodb.net/?retryWrites=true&w=majority";
 
 //middleware
 app.use(cors());
